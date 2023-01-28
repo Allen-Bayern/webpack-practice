@@ -1,22 +1,13 @@
-import * as path from 'path';
-import { Configuration as WebpackConfiguration } from 'webpack';
-import { Configuration as DevServerConfiguration } from "webpack-dev-server";
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import EslintWebpackPlugin from 'eslint-webpack-plugin';
+const path = require('path');
+const EslintWebpackPlugin = require('eslint-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-import { getStyleLoaders } from './funcs/GetLoaders';
+const { getStyleLoaders } = require('./funcs/GetLoaders.js');
 
-const devServer: DevServerConfiguration = {
-    port: 4155,
-    open: true,
-    host: 'localhost',
-    hot: true,
-};
-
-const config: WebpackConfiguration = {
+module.exports = {
     entry: './src/index.tsx',
     output: {
-        path: void 0,
+        path: undefined,
         filename: 'static/js/[name].js',
         chunkFilename: 'static/js/[name].chunk.js',
         assetModuleFilename: 'static/media/[hash:10][ext][query]',
@@ -89,10 +80,14 @@ const config: WebpackConfiguration = {
             chunks: 'all',
         },
         runtimeChunk: {
-            name: (entrypoint: any) => `runtime~${entrypoint.name}.js`,
+            name: entrypoint => `runtime~${entrypoint.name}.js`,
         }
     },
-    devServer,
+    devServer: {
+        port: 4155,
+        open: true,
+        host: 'localhost',
+        hot: true,
+    },
+    resolve: ['.jsx', '.json', '.js', '.tsx', '.ts', '.vue']
 };
-
-export default config;
