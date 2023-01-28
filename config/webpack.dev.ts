@@ -2,6 +2,7 @@ import * as path from 'path';
 import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as DevServerConfiguration } from "webpack-dev-server";
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import EslintWebpackPlugin from 'eslint-webpack-plugin';
 
 import { getStyleLoaders } from './funcs/GetLoaders';
 
@@ -71,6 +72,12 @@ const config: WebpackConfiguration = {
         ],
     },
     plugins: [
+        new EslintWebpackPlugin({
+            context: path.resolve(__dirname, '../src'),
+            exclude: 'node_modules',
+            cache: true,
+            cacheLocation: path.resolve(__dirname, '../node_modules/.cache/.eslintcache')
+        }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../public/index.htm'),
         }),

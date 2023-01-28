@@ -7,11 +7,20 @@ export function getStyleLoaders(loaderUsed: RuleSetUseItem = ''): RuleSetUseItem
         {
             loader: 'postcss-loader',
             options: {
-                postcssOptions: {
-                    plugins: [
-                        'postcss-preset-env',
-                    ],
-                },
+                postcssOptions() {
+                    return {
+                        plugins: [
+                            'postcss-preset-env',
+                            ['autoprefixer', {
+                                browsers: ['Android >= 4.0', 'iOS >= 7']
+                            }],
+                            ['postcss-pxtorem', {
+                                rootValue: 16,
+                                propList: ['*']
+                            }],
+                        ]
+                    }
+                } ,
             },
         },
         loaderUsed,
