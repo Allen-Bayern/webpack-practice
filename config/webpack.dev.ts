@@ -14,7 +14,7 @@ const devServer: DevServerConfiguration = {
 };
 
 const config: WebpackConfiguration = {
-    entry: './src/main.js',
+    entry: './src/index.tsx',
     output: {
         path: void 0,
         filename: 'static/js/[name].js',
