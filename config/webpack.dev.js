@@ -43,6 +43,7 @@ module.exports = {
                 test: /\.jsx?$/,
                 use: ['babel-loader'],
                 include: path.resolve(__dirname, '../src'),
+                exclude: /node_modules/,
                 options: {
                     cacheDirectory: true,
                     cacheCompression: false,
@@ -51,6 +52,7 @@ module.exports = {
             // 处理ts
             {
                 test: /\.tsx?$/,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'ts-loader',
@@ -89,5 +91,17 @@ module.exports = {
         host: 'localhost',
         hot: true,
     },
-    resolve: ['.jsx', '.json', '.js', '.tsx', '.ts', '.vue']
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, '../src'),
+        },
+        extensions: [
+            '.tsx',
+            '.ts',
+            '.jsx',
+            '.js',
+            '.json',
+            '.vue'
+        ],
+    },
 };

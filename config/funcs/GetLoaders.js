@@ -1,4 +1,4 @@
-const getStyleLoaders = loaderUsed => [
+const getStyleLoaders = (loaderUsed = '') => [
     'style-loader',
     'css-loader',
     {
