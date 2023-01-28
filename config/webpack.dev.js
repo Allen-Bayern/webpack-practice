@@ -73,6 +73,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../public/index.htm'),
+            filename: 'index.htm'
         }),
     ],
     mode: 'development',
@@ -90,6 +91,7 @@ module.exports = {
         open: true,
         host: 'localhost',
         hot: true,
+        historyApiFallback: true,
     },
     resolve: {
         alias: {
